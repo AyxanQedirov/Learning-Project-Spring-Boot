@@ -8,6 +8,6 @@ public interface CarManager {
     List<CarEntity> getAll();
     CarEntity getById(int id);
     void delete(int id);
-    void update(int id,CarEntity carEntity);
+    void update(CarEntity carEntity);
     void add(CarEntity carEntity);
 }

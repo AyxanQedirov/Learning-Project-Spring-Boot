@@ -32,9 +32,10 @@ public class CarService implements CarManager {
     }
 
     @Override
-    public void update(int id, CarEntity carEntity) {
-        carRepository.update(id,carEntity);
+    public void update(CarEntity carEntity) {
+        carRepository.update(carEntity);
     }
+
 
     @Override
     public void add(CarEntity carEntity) {

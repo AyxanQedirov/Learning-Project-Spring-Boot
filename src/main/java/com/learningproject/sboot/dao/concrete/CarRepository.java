@@ -28,16 +28,25 @@ public class CarRepository implements EntityRepository<CarEntity> {
     }
 
     @Override
-    public void update(int id, CarEntity entity) {
-        LocalData.cars.stream().filter(c->c.getId()==id).forEach(c-> {
-            LocalData.cars.remove(c);
-        });
+    public void update(CarEntity entity) {
 
-        LocalData.cars.add(entity);
+        int replacedElementId=-1;
+        for (int i=0;i<LocalData.cars.size();i++){
+            if(LocalData.cars.get(i).getId()==entity.getId()){
+                replacedElementId=i;
+                break;
+            }
+        }
+
+        if(replacedElementId>-1){
+            LocalData.cars.set(replacedElementId,entity);
+        }
     }
 
     @Override
     public void delete(int id) {
-        LocalData.cars.stream().filter(c->c.getId()==id).forEach(c->LocalData.cars.remove(c));
+
+        var deletedElement=LocalData.cars.stream().filter(c->c.getId()==id).findFirst().get();
+        LocalData.cars.remove(deletedElement);
     }
 }
